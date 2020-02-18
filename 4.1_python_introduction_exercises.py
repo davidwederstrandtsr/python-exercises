@@ -1,3 +1,3 @@
-print("Hello, World!");
-message = "Curie is awesome";
-print(message);
+print("Hello, World!")
+message = "Curie is awesome"
+print(message)
