@@ -267,6 +267,59 @@ print("This is the end of the grade bonus")
 
 
 
+print()
+print()
+print("BONUS - GRADES")
+submit = True
+
+while submit == True :
+	grade_input = float(input("Enter a integer grade: "))	
+	score = int(grade_input)
+	grade = ''
+
+	if score >= 99:
+		grade = "A+"
+	elif score >= 95:
+		grade = "A"
+	elif score >= 90:
+		grade = "A-"
+	elif score >= 89:
+		grade = "B+"
+	elif score >= 85:
+		grade = "B"
+	elif score >= 80:
+		grade = "B-"
+	elif score >= 79:
+		grade = "C+"
+	elif score >= 75:
+		grade = "C"
+	elif score >= 70:
+		grade = "C-"
+	elif score >= 69:
+		grade = "D+"
+	elif score >= 65:
+		grade = "D"
+	elif score >= 60:
+		grade = "D-"
+	else:
+		grade = 'F'
+
+	
+	correct = input(f"Is {grade} correct? (y/n) ")
+	if correct == 'y':
+		print(f"A number score of {score} is a {grade}")
+	else:
+		submit = True
+
+	score_again = input("Enter another numberical grade? (y/n) ")
+	if score_again == 'n':
+		break;
+
+print("This is the end of the extra grade bonus")
+
+
+
+
 
 
 
