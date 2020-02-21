@@ -1,4 +1,5 @@
 vowels = ['a', 'e', 'i', 'o', 'u']
+consonant = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z']
 
 # 1. Define a function named is_two. It should accept one input and return True if the passed input is 
 #	 either the number or the string 2, False otherwise.
@@ -73,7 +74,42 @@ def handle_commas(number):
 # 8. Define a function named get_letter_grade. 
 #	 It should accept a number and return the letter grade associated with that number (A-F).
 
+def get_letter_grade(number):
+	while (str(number).isdigit() == False
+		or number < 0 or number > 100):
+		print("The entered number is not valid.")
+		number = input("Enter a numerical grade: ")
+
+	if number >= 90:
+		grade = 'A'
+	elif number >= 80:
+		grade = 'B'
+	elif number >= 70:
+		grade = 'C'
+	elif number >= 60:
+		grade = 'D'
+	else:
+		grade = 'F'
+
+	return grade
+
+letter_grade = get_letter_grade(87)
+print(letter_grade)
+
 # 9. Define a function named remove_vowels that accepts a string and returns a string with all the vowels removed.
+
+def remove_vowels(word):
+    new_string = ''
+    for w in word:
+        l = w.lower()
+        if w not in vowels and l not in vowels:
+            new_string += w
+        else:
+            continue
+    return new_string
+
+word_minus_vowels = remove_vowels('MississippI')
+
 
 # 10. Define a function named normalize_name. 
 #	  It should accept a string and return a valid python identifier, that is:
@@ -85,6 +121,23 @@ def handle_commas(number):
 # 			~ Name will become name
 # 			~ First Name will become first_name
 # 			~ % Completed will become completed
+
+def normalize_name(name):
+    new_name = ''
+    name = name.lower().strip()
+    name = name.replace(' ','_')
+    
+    for n in name:
+        if n in vowels or n in consonant or n == '_':
+            new_name += n
+        else:
+            continue         
+   
+    return new_name
+
+fixed_name = normalize_name('0 Da vid')
+print(fixed_name)
+
 
 # 11. Write a function named cumsum that accepts a list of numbers and returns a list that is the cumulative 
 #	  sum of the numbers in the list.
