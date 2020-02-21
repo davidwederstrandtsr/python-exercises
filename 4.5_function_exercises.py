@@ -146,6 +146,18 @@ print(fixed_name)
 # 		- cumsum([1, 1, 1]) returns [1, 2, 3]
 # 		- cumsum([1, 2, 3, 4]) returns [1, 3, 6, 10]
 
+def cumsum(num_list):
+    new_list = []
+    temp = 0
+    for n in num_list:
+        new_list.append(n + temp)
+        temp += n
+    return new_list
+
+
+
+
+
 # Bonus
 # Create a function named twelveto24. 
 #   It should accept a string in the format 10:45am or 4:30pm and return a string that is the representation 
