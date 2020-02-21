@@ -14,6 +14,8 @@ print("********")
 # 	b. prompt the user for a day of the week, print out whether the day is a weekday or a weekend
 weekday = ["Monday", "Tuesday", "Wednesday", "Thursday", "Firday", "monday", "tuesday", "wednesday", "thursday", "friday"]
 weekend = ["Saturday", "Sunday", "saturday", "sunday"]
+
+
 # answer2 = input("Enter a day of the week: ")
 answer2 = "saturday"
 
@@ -23,27 +25,40 @@ elif answer2.title() in weekend:
 	print("Yeah, its the weekend")
 
 
+
+
 # 	c. create variables and make up values for
 print("Paycheck")
 # 		- the number of hours worked in one week
 week_hours_worked = 60
 time_and_half = 1.5
 normal_hours = 40
-# 		- the hourly rate
 hourly_rate = 35
-# 		- how much the week's paycheck will be
 week_paycheck = normal_hours * hourly_rate
-
-# 		- write the python code that calculates the weekly paycheck. 
-#		  You get paid time and a half if you work more than 40 hours
 overtime = week_hours_worked - normal_hours
-
 overtime_pay = hourly_rate * time_and_half * overtime
-
 take_home = week_paycheck + overtime_pay
+
 print(f"For {week_hours_worked} hours, at {time_and_half} for overtime")
 print(f"Employee earned ${week_paycheck} regular time, ${overtime_pay} overtime")
 print(f"for total take home of ${take_home}")
+
+# ******** CLASS EXAMPLE *********
+
+hours_worked = 51
+hourly_rate = 50
+overtime_hours = 0
+overtime_pay = 0
+total = 0
+if hours_worked <= 40:
+	total = hourly_rate * hours_worked
+else:
+	overtime_hours = hours_worked - 40
+	overtime_pay = overtime_pay * overtime_pay
+	regular_pay = 40 * hourly_rate
+	total = regular_pay + overtime_pay
+
+print(f"Total pay is ${total} after working {hours_worked} for an hourly rate of ${hourly_rate} with overtime.")
 
 
 # 2. Loop Basics
@@ -80,9 +95,9 @@ while n > -10:
 # 		- Create a while loop that starts at 2, and displays the number squared on each 
 #			line while the number is less than 1,000,000.
 print("****")
-while j < 1000000:
+while j < 1_000_000:
 	print(j)
-	j **= 2
+	j *= i
 
 print()
 
@@ -99,18 +114,25 @@ print("End of While Loop")
 
 print()
 print("FOR LOOP")
-# num = input("Enter a integer: ")
+num = int(input("Enter a postivie integer: "))
 
-num = 7
 for n in range(1, 11):
 	answer = int(num) * n
 	print(f"{num} * {n} = {answer}")
+
+# Another way to do the one above
+number = int(input("Please enter a positive "))
+while i <= 10:
+	print(f"{number} * {i} = {number * i}")
+	i += 1
 
 # ii. Create a for loop that uses print to create the output shown below.
 
 for i in range(1, 10):
 	n = str(i)
 	print(n * i)
+#   or
+#   print(i * str(i))
 
 # C. break and continue
 # i. Prompt the user for an odd number between 1 and 50. 
@@ -135,15 +157,37 @@ for n in range(1, 50):
 		if n == num:
 			continue
 		else:
-			print(n)
+			print(f"Here is an odd number: {n}")
+
+# *********** BREAK AND CONTINUE class example *****************
+user_choice = input("Input")
+while (user_choice.isdigit() == False
+	or int(user_choice) < 1
+	or int(user_choice) > 50
+	or int(user_choice) % 2 == 0):
+	print(f"{user_choice} is nice, but not an odd number between 1 and 50.")
+	user_choice = input("input")
+
+user_choice = int(user_choice)
+print(f"{user_choice} is an odd number between 1 and 50. Thank you.")
+print()
+print("The number to skip is", user_choice)
+
+for i in range(1, 50):
+	if i % 2 == 0:
+		continue
+
+	if i == user_choice:
+		print(f"Skipping {i}")
+		continue
+	print(f"{i} is and odd number")
 		
 # D. The input function can be used to prompt for input and use that input in your python code. 
 # Prompt the user to enter a positive number and write a loop that counts from 0 to that number. 
 # (Hints: first make sure that the value the user entered is a valid number, also note that the 
 # input function returns a string, so you'll need to convert this to a numeric type.)
 
-# num = int(input("Enter a positive number: "))
-num = 17
+num = int(input("Enter a positive number: "))
 
 while num < 1:
 	print("You entered a non-positive number")
@@ -151,6 +195,7 @@ while num < 1:
 
 for n in range(0, num + 1):
 	print(n)
+
 
 # Write a program that prompts the user for a positive integer. 
 # Next write a loop that prints out the numbers from the number the user entered down to 1.
@@ -179,13 +224,15 @@ while num >= 1:
 # For numbers which are multiples of both three and five print "FizzBuzz".
 
 for i in range(1, 100):
-	if i % 3 == 0 and i % 5 != 0:
-		print(f"{i} Fizz")
-	elif i % 5 == 0 and i % 3 != 0:
-		print(f"{i} Buzz")
+	if i % 3 == 0 and i % 5 == 0:
+		print("{:<4}{}".format(i, 'Fizz Buzz'))
+	elif i % 3 == 0:
+		print("{:<4}{}".format(i, 'Fizz'))
+	elif i % 5 == 0:
+		print("{:<4}{}".format(i, 'Buzz'))
+	
 	else:
-		print(f"{i} Fizz Buzz")
-
+		print(i)
 
 
 # 5. Display a table of powers.
@@ -318,6 +365,22 @@ while submit == True :
 print("This is the end of the extra grade bonus")
 
 
+# Create a list of dictionaries where each dictionary represents a book that you have read. 
+# Each dictionary in the list should have the keys title, author, and genre. 
+# Loop through the list and print out information about each book.
+
+# Prompt the user to enter a genre, then loop through your books list and print out the titles of all the books in that genre.
+
+my_books = [{'author': 'Stephen King', 'title': 'The Dark Tower I: The Gunslinger', 'genre': 'Horror'}, 
+	{'author': 'Francois Chollet', 'title': 'Deep Learning with Python', 'genre': 'Data Science'}, 
+	{'author': 'Ervin Varga', 'title': 'Practical Data Science with Python 3', 'genre': 'Data Science'},
+	{'author': 'Eric Matthes', 'title': 'Python Crash Course 2nd Edition', 'genre': 'Data Science'},
+	{'author': 'Stephen King', 'title': 'The Dark Tower I: The Drawing of the Three', 'genre': 'Horror'},
+	{'author': 'Stephen King', 'title': 'The Dark Tower I: The Waste Lands', 'genre': 'Horror'}]
+
+print("Your library currently have the following genres:")
+print("Horror\nData Science")
+book_search = input("Enter a genre: ")
 
 
 
