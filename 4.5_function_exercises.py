@@ -70,6 +70,8 @@ def handle_commas(number):
     new = number.replace(',','')
     return new
 
+number = handle_commas('1,000')
+
 
 # 8. Define a function named get_letter_grade. 
 #	 It should accept a number and return the letter grade associated with that number (A-F).
