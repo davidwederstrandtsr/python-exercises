@@ -225,11 +225,11 @@ while num >= 1:
 
 for i in range(1, 100):
 	if i % 3 == 0 and i % 5 == 0:
-		print("{:<4}{}".format(i, 'Fizz Buzz'))
+		print("{}".format('Fizz Buzz'))
 	elif i % 3 == 0:
-		print("{:<4}{}".format(i, 'Fizz'))
+		print("{}".format('Fizz'))
 	elif i % 5 == 0:
-		print("{:<4}{}".format(i, 'Buzz'))
+		print("{}".format('Buzz'))
 	
 	else:
 		print(i)
