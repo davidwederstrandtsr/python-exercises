@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[8]:
 
 
 vowels = ['a', 'e', 'i', 'o', 'u']
 consonant = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z']
 
 
-# In[2]:
+# In[ ]:
 
 
 # 1. Define a function named is_two. It should accept one input and return True if the passed input is 
@@ -21,7 +21,7 @@ print(is_two('2'))
 print(is_two(3))
 
 
-# In[3]:
+# In[ ]:
 
 
 # 2. Define a function named is_vowel. It should return True if the passed string is a vowel, False otherwise.
@@ -32,7 +32,24 @@ def is_vowel(ch):
     return ch in vowels
 
 
-# In[4]:
+# In[ ]:
+
+
+print(is_vowel('a'))
+print(is_vowel('A'))
+print(is_vowel('b'))
+
+
+# In[ ]:
+
+
+assert is_vowel('c') == False
+assert is_vowel('a') == True
+
+# nothing will display if the assertions are correct
+
+
+# In[9]:
 
 
 # 3. Define a function named is_consonant. 
@@ -43,13 +60,26 @@ def is_consonant(ch):
         return False
     ch = ch.lower()
 
-    return ch not in vowels
+    return ch in consonant
+# return ch.isalpha() and not in vowels
 
 print(is_consonant('D'))
 print(is_consonant('a'))
 
 
-# In[5]:
+# In[10]:
+
+
+"c".isalpha()
+
+
+# In[ ]:
+
+
+assert 
+
+
+# In[13]:
 
 
 # 4. Define a function that accepts a string that is a word. 
@@ -64,31 +94,61 @@ def capitilize_word(word):
 # or
 
 def cap_word(word):
-	if str(word).isdigit():
-		return word
-	ch = word[0]
-	if ch not in ['a', 'e', 'i', 'o', 'u']:
-		return word.title()
-	else:
-		return word
+    if str(word).isdigit():
+        return word
+    ch = word[0]
+    if ch not in ['a', 'e', 'i', 'o', 'u']:
+        return word.title()
+    else:
+        return word
+
+
+# In[14]:
+
+
+def c_word(word):
+    first_letter = word[0]
+    if is_consonant(first_letter):
+        return word.capitalize()
+    else:
+        return word
+
+
+# In[15]:
+
 
 cap_word1 = capitilize_word("david")
 cap_word2 = capitilize_word("anthony")
 cap_word3 = cap_word("david")
 cap_word4 = cap_word("anthony")
+cap_word5 = c_word("ant")
+cap_word6 = c_word("bant")
 
 
-# In[6]:
+# In[16]:
+
+
+print(cap_word1)
+print(cap_word2)
+print(cap_word3)
+print(cap_word4)
+print(cap_word5)
+print(cap_word6)
+
+
+# In[1]:
 
 
 # 5. Define a function named calculate_tip. 
 #	 It should accept a tip percentage (a number between 0 and 1) and the bill total, and return the amount to tip.
 
 def calculate_tip(percent, bill):
-    while (percent < 0 or percent > 100):
+    if percent > 0:
+        percent = percent / 100.0
+    while (percent < 0 or percent > 1):
         print("The percentage for tip needs to be between 0 and 100")
-        percent = input("Enter a tip between 0 and 1: (0.15 for 15%)")
-    tip = bill * percent / 100.0
+        percent = int(input("Enter a tip between 0 and 100: "))
+    tip = bill * percent
 
     return bill + tip
 
@@ -100,27 +160,30 @@ print(f"Your nill before including tip is ${bill}")
 print(f"Your bill after including tip is ${bill_including_tip}")
 
 
-# In[7]:
+# In[2]:
 
 
 # 6. Define a function named apply_discount. 
 #	 It should accept a original price, and a discount percentage, and return the price after the discount is applied.
 def calculate_discount(percent, bill):
-    while (percent < 0 and percent > 1 and bill > 0):
+    if percent > 0:
+        percent = percent / 100.0
+    while percent < 0 or percent > 1:
         print("The percentage for discount needs to be between 0 and 100")
-        percent = input("Enter a discount between 0 and 100: ")
-        bill = input("Enter the bill amount")
-    discount = bill * percent / 100.0
+        percent = int(input("Enter a discount between 0 and 100: "))
+        if percent > 0:
+            percent = percent / 100.0
+    discount = bill * percent
     return bill - discount
 
 # 6 output
-percent = input("Enter a discount between 0 and 100: ")
-bill = input("Enter the bill amount")
+percent = int(input("Enter a discount between 0 and 100: "))
+bill = int(input("Enter the bill amount $"))
 bill_after_discount = calculate_discount(percent, bill)
 print(f"Your bill after discount is ${bill_after_discount}")
 
 
-# In[8]:
+# In[25]:
 
 
 # 7. Define a function named handle_commas. 
@@ -128,13 +191,23 @@ print(f"Your bill after discount is ${bill_after_discount}")
 
 def handle_commas(number):
     new = number.replace(',','')
-    return new
-
-number_after = handle_commas('1,000')
-print(f"The number after commas removed is {number_after}")
+    return int(new)
 
 
-# In[9]:
+# In[26]:
+
+
+assert handle_commas("1,234") == 1234
+assert handle_commas("1,234,567,890") == 1234567890
+
+
+# In[27]:
+
+
+print(handle_commas('1,000'))
+
+
+# In[29]:
 
 
 # 8. Define a function named get_letter_grade. 
@@ -164,7 +237,7 @@ print(letter_grade)
 print()
 
 
-# In[10]:
+# In[30]:
 
 
 # 9. Define a function named remove_vowels that accepts a string and returns a string with all the vowels removed.
@@ -184,8 +257,29 @@ print(word_minus_vowels)
 
 print()
 
+# ''.join([c for c in word if not is_vowel(c)])
 
-# In[11]:
+
+# In[32]:
+
+
+def remove_vowels2(string):
+    return ''.join([c for c in string if not is_vowel(c)])
+
+
+# In[33]:
+
+
+# assert remove vowels
+assert remove_vowels('a') == ''
+assert remove_vowels('ab') == 'b'
+assert remove_vowels('daa') == 'd'
+assert remove_vowels('dad') == 'dd'
+assert remove_vowels('aaa') == ''
+assert remove_vowels('asasasa') == 'sss'
+
+
+# In[40]:
 
 
 # 10. Define a function named normalize_name. 
@@ -212,12 +306,45 @@ def normalize_name(name):
    
     return new_name
 
+
+# In[41]:
+
+
 fixed_name = normalize_name('0 Da vid')
 print(fixed_name)
 print()
 
 
-# In[12]:
+# In[42]:
+
+
+# 10 redone
+# 10 helper function
+def remove_special_character(string):
+    return ''.join([c for c in string if c.isalnum() or c == ' '])
+
+
+# In[43]:
+
+
+remove_special_character("a!@#$#@%$#$%^^b")
+
+
+# In[44]:
+
+
+def norm_name(string):
+    without_special_chars = remove_special_character(string)
+    return without_special_chars.lower().strip().replace(' ', '_')
+
+
+# In[45]:
+
+
+norm_name('0 Da vid')
+
+
+# In[46]:
 
 
 # 11. Write a function named cumsum that accepts a list of numbers and returns a list that is the cumulative 
@@ -241,7 +368,7 @@ print(list2)
 print()
 
 
-# In[13]:
+# In[47]:
 
 
 # Bonus
@@ -250,7 +377,7 @@ print()
 #   of the time in a 24-hour format. Bonus write a function that does the opposite.
 
 
-def twelveto24(time_to_covert):
+def twelveto24(time_to_convert):
     hour = []
     minutes = ''
     ampm = ''
@@ -264,12 +391,20 @@ def twelveto24(time_to_covert):
             ampm += t
 
     if ampm == 'pm':
-        hour += 12
+        hour = int(hour) + 12
 
-    time_coverted = hour + ':' + minutes
+    time_converted = str(hour) + ':' + minutes
+    return time_converted
 
 
-# In[15]:
+# In[48]:
+
+
+print(twelveto24('11:23am'))
+print(twelveto24('11:23pm'))
+
+
+# In[ ]:
 
 
 # Create a function named col_index. 
@@ -285,10 +420,19 @@ def col_index(col_name):
     return num
 
 
-print(col_index('A'))
+# In[ ]:
 
-print(col_index('AA'))
 
+col_index('A')
+
+
+# In[ ]:
+
+
+col_index('AA')
+
+
+# In[ ]:
 
 
 
