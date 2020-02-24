@@ -242,21 +242,32 @@ for i in range(1, 100):
 # Ask if the user wants to continue.
 # Assume that the user will enter valid data.
 # Only continue if the user agrees to.
+choice = "yes"
 
-# user_input = int(input("What number would you like to go to? "))
+while choice in ["y", "yes"]:
+	user_input = int(input("What number would you like to go to? "))
+	while (str(user_input).isdigit() == False
+		or int(user_input) <= 1):
+		print(f"{user_input} is noce but we need a positive number")
+		user_input = int(input("What number would you like to go to? "))
 
-user_input = 3000
-print()
-print("Here is your table!")
-print()
 
-print("number | squared | cubed")
-print("------ | ------- | -----")
+	print()
+	print("Here is your table!")
+	print()
 
-for n in range(1, user_input):
-	n_sq = n ** 2
-	n_cube = n ** 3
-	print("{:<7}|{:<9}|{:<12}".format(n, n_sq, n_cube))
+	print("number | squared | cubed")
+	print("------ | ------- | -----")
+
+	for n in range(1, user_input):
+		# n_sq = n ** 2
+		# n_cube = n ** 3
+		# print("{:<7}|{:<9}|{:<12}".format(n, n_sq, n_cube))
+		print("{:<7}|{:<9}|{:<12}".format(n, n ** 2, n ** 3))
+
+	choice = input("Do you want to continue? Type Y or Yes")
+	choice = choice.lower()
+
 
 # # Bonus: Research python's format string specifiers to align the table
 
@@ -296,12 +307,7 @@ while submit == True :
 	else:
 		grade = 'F'
 
-	
-	correct = input(f"Is {grade} correct? (y/n) ")
-	if correct == 'y':
-		print(f"A number score of {score} is a {grade}")
-	else:
-		submit = True
+	print(f"A number score of {score} is a {grade}")
 
 	score_again = input("Enter another numberical grade? (y/n) ")
 	if score_again == 'n':
@@ -378,9 +384,30 @@ my_books = [{'author': 'Stephen King', 'title': 'The Dark Tower I: The Gunslinge
 	{'author': 'Stephen King', 'title': 'The Dark Tower I: The Drawing of the Three', 'genre': 'Horror'},
 	{'author': 'Stephen King', 'title': 'The Dark Tower I: The Waste Lands', 'genre': 'Horror'}]
 
-print("Your library currently have the following genres:")
-print("Horror\nData Science")
-book_search = input("Enter a genre: ")
+genre_list = ["Horror", "Data Science"]
+
+for book in my_books:
+    print(f"'{book['title']}' by {book['author']} is about {book['genre']}")
+
+print()
+print("Your library currently has the following genres:")
+print()
+print("\tHorror\n\tData Science")
+print()
+
+genre_search = input("Enter a genre: ")
+genre_search = genre_search.title()
+
+while genre_search not in genre_list:
+    print("You entered an invalid genre")
+    print("Your library currently have the following genres:")
+    print("Horror\nData Science")
+    genre_search = input("Enter a genre: ")
+
+for book in my_books:
+    if book["genre"] == genre_search:
+        print("{:<25}{}".format(book["title"],book["author"]))
+
 
 
 
