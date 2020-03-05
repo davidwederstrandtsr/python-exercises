@@ -2,4 +2,6 @@
 .DS_Store
 __pycache__/
 *.csv
-.prac/
+prac/
+numpy/
+env.py
