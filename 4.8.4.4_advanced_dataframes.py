@@ -293,22 +293,22 @@ det
 et
 
 
-# In[31]:
+# In[43]:
 
 
-titles_by_departments = pd.crosstab(det.dept_no, det.title)
+titles_by_departments = pd.crosstab(det.dept_name, det.title)
 titles_by_departments
 
 
-# In[32]:
+# In[50]:
 
 
-titles_by_departments.T
+#titles_by_departments.plot.bar()
 
 
 # ## 4. Use your get_db_url function to help you explore the data from the chipotle database. Use the data to answer the following questions:
 
-# In[44]:
+# In[33]:
 
 
 db_name = "chipotle"
@@ -322,30 +322,48 @@ chipotle
 
 # #### - What is the total price for each order?
 
-# In[59]:
+# In[34]:
 
 
-#mpg['average_milage'] = (mpg.city + mpg.highway) / 2
-# df["a*b"] = df["a"] * df["b"]
+def convert_to_float(str):
+    return float(str.strip('$'))
+    
 
-chipotle["item_total"] = chipotle['quantity'] * chipotle['item_price']
+
+# In[39]:
+
+
+# chipolte['item_price'] = chipotle['item_price'].replace('[\$]', '', regex=True).astype(float)
+chipotle["item_total"] = chipotle.item_price.apply(convert_to_float)
 chipotle
+
+
+# In[40]:
+
+
+chipotle.groupby('order_id').item_total.sum()
+
+
+# In[ ]:
+
+
+
 
 
 # #### - What are the most popular 3 items?
 
-# In[ ]:
+# In[41]:
 
 
-
+chipotle.groupby('item_name').quantity.agg(['count']).nlargest(n=3, columns="count")
 
 
 # #### - Which item has produced the most revenue?
 
-# In[ ]:
+# In[42]:
 
 
-
+chipotle.groupby('item_name').item_total.agg(['sum']).nlargest(n=1, columns="sum")
 
 
 # In[ ]:
